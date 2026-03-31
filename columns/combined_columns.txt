@@ -1,0 +1,14 @@
+age
+gender
+country
+insurance
+sought_treatment
+self_employed
+reveal_disorder_client_contacts
+reveal_disorder_coworkers
+previous_employers
+previous_employer_benefits
+previous_employer_options_aware
+discuss_willing_coworkers
+discuss_willing_supervisor
+discuss_willing_previous_employer
