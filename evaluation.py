@@ -1,15 +1,35 @@
 from scipy.stats import chisquare
 from scipy.spatial.distance import pdist, kulczynski1
-from sklearn.metrics import jaccard_score
+from sklearn.metrics import (
+    accuracy_score, 
+    precision_score, 
+    recall_score, 
+    f1_score,
+    jaccard_score,
+    confusion_matrix, 
+    roc_auc_score, 
+    ConfusionMatrixDisplay)
 from sklearn.metrics.pairwise import cosine_similarity
 
-def support():
+def calc_support():
     return
 
-def confidence():
+def calc_confidence():
     return
 
 def calc_lift():
+    return
+
+def calc_accuracy():
+    return
+
+def calc_precision():
+    return
+
+def calc_recall():
+    return
+
+def calc_f1():
     return
 
 def calc_chisquared():

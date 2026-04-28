@@ -1,7 +1,9 @@
 import pandas as pd
 
 from preprocess import preprocess
-import evaluation
+import modeling as model
+import evaluation as eval
+import visualization
 
 df = preprocess()
 
