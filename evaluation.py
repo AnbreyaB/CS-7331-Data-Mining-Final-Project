@@ -6,10 +6,12 @@ from sklearn.metrics import (
     recall_score, 
     f1_score,
     jaccard_score,
+    silhouette_score,
     confusion_matrix, 
     roc_auc_score, 
     ConfusionMatrixDisplay)
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
+from pydunn import dunn
 
 def calc_support():
     return
@@ -39,6 +41,12 @@ def calc_cosine():
     return
 
 def calc_jaccard():
+    return
+
+def calc_silhouette():
+    return
+
+def calc_dunn():
     return
 
 def calc_kulczynski():

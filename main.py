@@ -3,7 +3,7 @@ import pandas as pd
 from preprocess import preprocess
 import modeling as model
 import evaluation as eval
-import visualization
+import visualization as vis
 
 df = preprocess()
 
