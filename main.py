@@ -39,6 +39,9 @@ df["age_clean"] = pd.to_numeric(df["age"], errors="coerce")
 # restrict age to reasonable ages
 df.loc[(df["age_clean"] < 18) | (df["age_clean"] > 100), "age_clean"] = None
 
+# Era label: 0 = pre-pandemic (before 2020), 1 = post-shutdown (2020 and after)
+df["era"] = df["year"].apply(lambda y: 0 if y < 2020 else 1)
+
 clean_cols = [
     "insurance_clean",
     "treatment_clean",
@@ -57,11 +60,14 @@ for col in clean_cols:
 
 df_final = df[[
     "treatment_clean",
+    "insurance_clean",
     "support_clean",
     "self_employed_clean",
+    "disclosure_clean",
     "gender_clean",
     "age_clean",
-    "year"
+    "year",
+    "era"
 ]].copy()
 
 df_final.shape
