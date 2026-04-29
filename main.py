@@ -8,7 +8,7 @@ from clean import (
     clean_gender
 )
 from modeling import run_random_forest, run_adaboost, run_decision_tree, run_kmeans, run_association_rules
-import evaluation as eval
+from evaluation import evaluation_aggregate
 import visualization as vis
 
 df = preprocess()
@@ -79,3 +79,11 @@ ada_results = run_adaboost(df_final)
 dt_results = run_decision_tree(df_final)
 km_results = run_kmeans(df_final)
 arm_results = run_association_rules(df_final)
+
+rf_evaluation = evaluation_aggregate(rf_results)
+ada_evaluation = evaluation_aggregate(ada_results)
+dt_evaluation = evaluation_aggregate(dt_results)
+
+print(rf_evaluation)
+print(ada_evaluation)
+print(dt_evaluation)
