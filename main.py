@@ -7,7 +7,7 @@ from clean import (
     clean_support,
     clean_gender
 )
-import modeling as model
+from modeling import run_random_forest, run_adaboost, run_decision_tree, run_kmeans, run_association_rules
 import evaluation as eval
 import visualization as vis
 
@@ -73,3 +73,9 @@ df_final = df[[
 df_final.shape
 #FINAL missing count for final clean dataset.
 print(df_final.isna().mean().round(3))
+
+rf_results = run_random_forest(df_final)
+ada_results = run_adaboost(df_final)
+dt_results = run_decision_tree(df_final)
+km_results = run_kmeans(df_final)
+arm_results = run_association_rules(df_final)
