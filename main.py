@@ -103,3 +103,12 @@ print("Evaluation Metrics for k-Means Cluster: ")
 km_evaluation = evaluation_aggregate(km_results)
 print(km_evaluation)
 print()
+
+print("Evaluation Metrics for Association Rules: ")
+arm_evaluation = {
+    'mean_support': round(arm_results['rules']['support'].mean(), 4),
+    'mean_confidence': round(arm_results['rules']['confidence'].mean(), 4),
+    'mean_lift': round(arm_results['rules']['lift'].mean(), 4),
+}
+print(arm_evaluation)
+print()
