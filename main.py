@@ -1,11 +1,69 @@
 import pandas as pd
 
 from preprocess import preprocess
+from clean import (
+    clean_binary,
+    clean_disclosure,
+    clean_support,
+    clean_gender
+)
 import modeling as model
 import evaluation as eval
 import visualization as vis
 
 df = preprocess()
 
-print(df.info())
-print(df.head(20))
+print(df.notna().sum())
+print("\nPercent filled:")
+print((df.notna().mean()*100).round(2))
+
+#combine disclosure variables
+df["disclosure"] = df["reveal_disorder_coworkers"].combine_first(
+    df["discuss_willing_coworkers"]
+)
+
+df["insurance_clean"] = df["insurance"].apply(clean_binary)
+df["treatment_clean"] = df["sought_treatment"].apply(clean_binary)
+df["self_employed_clean"] = df["self_employed"].apply(clean_binary)
+
+df["disclosure_clean"] = df["disclosure"].apply(clean_disclosure)
+
+
+df["support_clean"] = df["previous_employer_benefits"].apply(clean_support)
+
+df["gender_clean"] = df["gender"].apply(clean_gender)
+
+# clean age
+df["age_clean"] = pd.to_numeric(df["age"], errors="coerce")
+
+# restrict age to reasonable ages
+df.loc[(df["age_clean"] < 18) | (df["age_clean"] > 100), "age_clean"] = None
+
+clean_cols = [
+    "insurance_clean",
+    "treatment_clean",
+    "self_employed_clean",
+    "disclosure_clean",
+    "support_clean",
+    "gender_clean",
+    "age_clean",
+    "year"
+]
+
+for col in clean_cols:
+    print("\n", col)
+    print(df[col].value_counts(dropna=False))
+
+
+df_final = df[[
+    "treatment_clean",
+    "support_clean",
+    "self_employed_clean",
+    "gender_clean",
+    "age_clean",
+    "year"
+]].copy()
+
+df_final.shape
+#FINAL missing count for final clean dataset.
+print(df_final.isna().mean().round(3))

@@ -1,5 +1,4 @@
 from scipy.stats import chisquare
-from scipy.spatial.distance import pdist, kulczynski1
 from sklearn.metrics import (
     accuracy_score, 
     precision_score, 
@@ -11,7 +10,6 @@ from sklearn.metrics import (
     roc_auc_score, 
     ConfusionMatrixDisplay)
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
-from pydunn import dunn
 
 def calc_support():
     return
@@ -44,12 +42,6 @@ def calc_jaccard():
     return
 
 def calc_silhouette():
-    return
-
-def calc_dunn():
-    return
-
-def calc_kulczynski():
     return
 
 def calc_allconf():
