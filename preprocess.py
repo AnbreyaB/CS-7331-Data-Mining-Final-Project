@@ -3,7 +3,8 @@ import json
 import os
 
 def preprocess():
-    dataset_folder = "data/"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    dataset_folder = os.path.join(base_dir, 'data')
     surveys = []
 
     for file in os.listdir(dataset_folder):
@@ -30,7 +31,7 @@ def preprocess():
                 year = 2020
             elif "2021" in file_lower:
                 year = 2021
-            elif "responses" in file_lower and "(1)" not in file_lower:
+            elif "responses" in file_lower and "(1)" not in file_lower and "__1__" not in file_lower:
                 year = 2022
             elif "responses" in file_lower and "(1)" in file_lower:
                 year = 2023
@@ -76,7 +77,7 @@ def preprocess():
             surveys.append(df)
 
     df_concat = pd.concat(surveys, axis=0, ignore_index=True)
-    df_concat = df_concat.groupby(level=0, axis=1).first()
+    df_concat = df_concat.loc[:, ~df_concat.columns.duplicated()]
 
     final_columns = [
         "age",
