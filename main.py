@@ -2,15 +2,24 @@ import pandas as pd
 import numpy as np
 
 from preprocess import preprocess
+from evaluation import evaluation_aggregate
 from clean import (
     clean_binary,
     clean_disclosure,
     clean_support,
     clean_gender
 )
-from modeling import run_random_forest, run_adaboost, run_decision_tree, run_kmeans, run_association_rules
-from evaluation import evaluation_aggregate
-import visualization as vis
+from modeling import (
+    run_random_forest, 
+    run_adaboost, 
+    run_decision_tree, 
+    run_kmeans, 
+    run_association_rules
+)
+from visualization import (
+    plot_feature_importance,
+    plot_confusion_matrix
+)
 
 np.set_printoptions(legacy='1.25')
 
