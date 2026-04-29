@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 from preprocess import preprocess
 from clean import (
@@ -10,6 +11,8 @@ from clean import (
 from modeling import run_random_forest, run_adaboost, run_decision_tree, run_kmeans, run_association_rules
 from evaluation import evaluation_aggregate
 import visualization as vis
+
+np.set_printoptions(legacy='1.25')
 
 df = preprocess()
 
@@ -80,10 +83,23 @@ dt_results = run_decision_tree(df_final)
 km_results = run_kmeans(df_final)
 arm_results = run_association_rules(df_final)
 
+print()
+print("Evaluation Metrics for Random Forest: ")
 rf_evaluation = evaluation_aggregate(rf_results)
-ada_evaluation = evaluation_aggregate(ada_results)
-dt_evaluation = evaluation_aggregate(dt_results)
-
 print(rf_evaluation)
+print()
+
+print("Evaluation Metrics for AdaBoost: ")
+ada_evaluation = evaluation_aggregate(ada_results)
 print(ada_evaluation)
+print()
+
+print("Evaluation Metrics for Decision Tree: ")
+dt_evaluation = evaluation_aggregate(dt_results)
 print(dt_evaluation)
+print()
+
+print("Evaluation Metrics for k-Means Cluster: ")
+km_evaluation = evaluation_aggregate(km_results)
+print(km_evaluation)
+print()
