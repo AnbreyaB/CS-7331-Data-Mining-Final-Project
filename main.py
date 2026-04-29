@@ -112,3 +112,9 @@ arm_evaluation = {
 }
 print(arm_evaluation)
 print()
+
+plot_feature_importance(rf_results['feature_importances'], 'Random Forest')
+plot_confusion_matrix(rf_results['y_test'], rf_results['y_pred'], 'Random Forest')
+plot_confusion_matrix(ada_results['y_test'], ada_results['y_pred'], 'AdaBoost')
+plot_feature_importance(dt_results['feature_importances'], 'Decision Tree')
+plot_confusion_matrix(dt_results['y_test'], dt_results['y_pred'], 'Decision Tree')
