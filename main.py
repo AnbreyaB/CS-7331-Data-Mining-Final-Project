@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 
+from tabulate import tabulate
+
 from preprocess import preprocess
 from evaluation import evaluation_aggregate
 from clean import (
@@ -121,6 +123,15 @@ arm_evaluation = {
 }
 print(arm_evaluation)
 print()
+
+metric_headers = ["Model", "Accuracy", "Precision", "Recall", "F1", "Jaccard", "Mean Absolute Error"]
+metrics_table = [
+    ["Random Forest", rf_evaluation["accuracy"], rf_evaluation["precision"], rf_evaluation["recall"], rf_evaluation["f1"], rf_evaluation["jaccard"], rf_evaluation["mean absolute error"]],
+    ["AdaBoost", ada_evaluation["accuracy"], ada_evaluation["precision"], ada_evaluation["recall"], ada_evaluation["f1"], ada_evaluation["jaccard"], ada_evaluation["mean absolute error"]],
+    ["Decision Tree", dt_evaluation["accuracy"], dt_evaluation["precision"], dt_evaluation["recall"], dt_evaluation["f1"], dt_evaluation["jaccard"], dt_evaluation["mean absolute error"]]
+]
+with open('outputs/metrics_table.txt', 'w', encoding="utf-8") as f:
+    print(tabulate(tabular_data=metrics_table, headers=metric_headers, tablefmt="fancy_grid", maxcolwidths=[None, 20]), file=f)
 
 plot_feature_importance(rf_results['feature_importances'], 'Random Forest')
 plot_confusion_matrix(rf_results['y_test'], rf_results['y_pred'], 'Random Forest')

@@ -5,9 +5,7 @@ from sklearn.metrics import (
     f1_score,
     mean_absolute_error,
     jaccard_score,
-    silhouette_score,
-    confusion_matrix,
-    ConfusionMatrixDisplay)
+    silhouette_score)
 from pydunn import dunn
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 
@@ -37,31 +35,4 @@ def evaluation_aggregate(result):
         eval_aggregate["dunn"] = km_dunn
 
     return eval_aggregate
-
-def calc_support():
-    return
-
-def calc_confidence():
-    return
-
-def calc_lift():
-    return
-
-def calc_chisquared():
-    return
-
-def calc_cosine():
-    return
-
-def calc_jaccard():
-    return
-
-def calc_silhouette():
-    return
-
-def calc_allconf():
-    return
-
-def calc_maxconf():
-    return
 
