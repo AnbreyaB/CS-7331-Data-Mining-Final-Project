@@ -19,7 +19,6 @@ def plot_feature_importance(feature_importances, model_name):
     plt.savefig(os.path.join(OUTPUT_DIR, fname), dpi=150)
     plt.close()
  
- 
 # Confusion matrix for each classifier
 def plot_confusion_matrix(y_test, y_pred, model_name):
     cm = confusion_matrix(y_test, y_pred)
@@ -31,4 +30,46 @@ def plot_confusion_matrix(y_test, y_pred, model_name):
     plt.tight_layout()
     fname = model_name.lower().replace(' ', '_') + '_confusion_matrix.png'
     plt.savefig(os.path.join(OUTPUT_DIR, fname), dpi=150)
+    plt.close()
+
+# KMeans elbow plot
+def plot_elbow(inertia_scores, k_range, best_k):
+    plt.figure(figsize=(8, 5))
+    plt.plot(k_range, inertia_scores, marker='o', color='steelblue')
+    plt.axvline(x=best_k, color='red', linestyle='--', label=f'Best k={best_k}')
+    plt.xlabel('Number of Clusters (k)')
+    plt.ylabel('Inertia')
+    plt.title('KMeans Elbow Plot')
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(os.path.join(OUTPUT_DIR, 'kmeans_elbow.png'), dpi=150)
+    plt.close()
+
+# KMeans era breakdown per cluster
+def plot_cluster_era(km_df):
+    era_counts = km_df.groupby(['cluster', 'era']).size().unstack(fill_value=0)
+    era_counts.columns = ['Pre-Pandemic', 'Post-Shutdown']
+    era_counts.plot(kind='bar', figsize=(8, 5), color=['steelblue', 'darkorange'])
+    plt.xlabel('Cluster')
+    plt.ylabel('Count')
+    plt.title('Era Breakdown per Cluster')
+    plt.xticks(rotation=0)
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(os.path.join(OUTPUT_DIR, 'kmeans_cluster_era.png'), dpi=150)
+    plt.close()
+
+# Association Rules top rules by lift
+def plot_association_rules(rules):
+    top_rules = rules.head(6).copy()
+    labels = [
+        f"{', '.join(list(r['antecedents']))} -> {', '.join(list(r['consequents']))}"
+        for _, r in top_rules.iterrows()
+    ]
+    plt.figure(figsize=(10, 6))
+    plt.barh(labels, top_rules['lift'].values, color='steelblue')
+    plt.xlabel('Lift')
+    plt.title('Top Association Rules by Lift')
+    plt.tight_layout()
+    plt.savefig(os.path.join(OUTPUT_DIR, 'association_rules_lift.png'), dpi=150)
     plt.close()
