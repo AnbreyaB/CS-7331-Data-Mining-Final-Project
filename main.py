@@ -20,7 +20,10 @@ from modeling import (
 )
 from visualization import (
     plot_feature_importance,
-    plot_confusion_matrix
+    plot_confusion_matrix,
+    plot_elbow, 
+    plot_cluster_era, 
+    plot_association_rules
 )
 
 np.set_printoptions(legacy='1.25')
