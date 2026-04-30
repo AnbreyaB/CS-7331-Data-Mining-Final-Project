@@ -138,3 +138,6 @@ plot_confusion_matrix(rf_results['y_test'], rf_results['y_pred'], 'Random Forest
 plot_confusion_matrix(ada_results['y_test'], ada_results['y_pred'], 'AdaBoost')
 plot_feature_importance(dt_results['feature_importances'], 'Decision Tree')
 plot_confusion_matrix(dt_results['y_test'], dt_results['y_pred'], 'Decision Tree')
+plot_elbow(km_results['inertia_scores'], km_results['k_range'], km_results['best_k'])
+plot_cluster_era(km_results['km_df'])
+plot_association_rules(arm_results['rules'])
