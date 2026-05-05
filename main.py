@@ -127,11 +127,11 @@ arm_evaluation = {
 print(arm_evaluation)
 print()
 
-metric_headers = ["Model", "Accuracy", "Precision", "Recall", "F1", "Jaccard", "Mean Absolute Error"]
+metric_headers = ["Model", "Accuracy", "Precision", "Recall", "F1"]
 metrics_table = [
-    ["Random Forest", rf_evaluation["accuracy"], rf_evaluation["precision"], rf_evaluation["recall"], rf_evaluation["f1"], rf_evaluation["jaccard"], rf_evaluation["mean absolute error"]],
-    ["AdaBoost", ada_evaluation["accuracy"], ada_evaluation["precision"], ada_evaluation["recall"], ada_evaluation["f1"], ada_evaluation["jaccard"], ada_evaluation["mean absolute error"]],
-    ["Decision Tree", dt_evaluation["accuracy"], dt_evaluation["precision"], dt_evaluation["recall"], dt_evaluation["f1"], dt_evaluation["jaccard"], dt_evaluation["mean absolute error"]]
+    ["Random Forest", rf_evaluation["accuracy"], rf_evaluation["precision"], rf_evaluation["recall"], rf_evaluation["f1"]],
+    ["AdaBoost", ada_evaluation["accuracy"], ada_evaluation["precision"], ada_evaluation["recall"], ada_evaluation["f1"]],
+    ["Decision Tree", dt_evaluation["accuracy"], dt_evaluation["precision"], dt_evaluation["recall"], dt_evaluation["f1"]]
 ]
 with open('outputs/metrics_table.txt', 'w', encoding="utf-8") as f:
     print(tabulate(tabular_data=metrics_table, headers=metric_headers, tablefmt="fancy_grid", maxcolwidths=[None, 20]), file=f)
